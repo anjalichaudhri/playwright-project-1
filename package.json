@@ -1,0 +1,28 @@
+{
+  "name": "playwright-project-1",
+  "version": "1.0.0",
+  "description": "Automated Software testing with Playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:headed:firefox": "npx playwright test --headed --browser=firefox",
+    "test:headless:all": "npx playwright test --headed --browser=all",
+    "test:headed": "npx playwright test --headed",
+    "test:headed:spec": "npx playwright test --headed tests/example.spec.ts",
+    "test:headed:tag1": "npx playwright test --grep @my-tag",
+    "test:headed:tag2": "npx playwright test --grep @testTag",
+    "test:headed:invert-tag": "npx playwright test --grep-invert @testTag",
+    "test:config:webkit": "npx playwright test --config=playwright.config.ts --project=Webkit",
+    "test:report:line": "npx playwright test --config=playwright.config.ts --reporter=line",
+    "test:report:list": "npx playwright test --config=playwright.config.ts --reporter=list",
+    "test:report:junit": "npx playwright test --config=playwright.config.ts --reporter=junit",
+    "test:report:html": "npx playwright test --config=playwright.config.ts --reporter=html",
+    "test:report:show": "npx playwright show-report"
+  },
+  "author": "Anjali",
+  "license": "ISC",
+  "dependencies": {
+    "@playwright/test": "^1.41.2",
+    "prettier": "^3.2.5"
+  }
+}
