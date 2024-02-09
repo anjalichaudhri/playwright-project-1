@@ -93,8 +93,9 @@ test('screenshots', async ({page}) => {
     // grep or grep-invert to run tagged tests
 });
 
-test('screenshots', async ({page}) => {
+test('screenshots - custom functions', async ({page}) => {
     helpers.loadPage(page);
+    // await page.pause();
     helpers.takeScreenshot(page);
 });
 
