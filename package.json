@@ -13,6 +13,8 @@
     "test:headed:tag2": "npx playwright test --grep @testTag",
     "test:headed:invert-tag": "npx playwright test --grep-invert @testTag",
     "test:config:webkit": "npx playwright test --config=playwright.config.ts --project=Webkit",
+    "test:config:firefox": "npx playwright test --config=playwright.config.ts --project=Firefox",
+    "test:config:chromium": "npx playwright test --config=playwright.config.ts --project=Chromium",
     "test:report:line": "npx playwright test --config=playwright.config.ts --reporter=line",
     "test:report:list": "npx playwright test --config=playwright.config.ts --reporter=list",
     "test:report:junit": "npx playwright test --config=playwright.config.ts --reporter=junit",

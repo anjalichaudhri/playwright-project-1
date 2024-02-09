@@ -81,3 +81,9 @@ test('tagging @my-tag @testTag', async ({page}) => {
     // grep or grep-invert to run tagged tests
 });
 
+test.only('screenshots', async ({page}) => {
+    await page.goto("http://zero.webappsecurity.com/");
+    await page.screenshot({path: 'screenshots/main_page.png'});
+    // grep or grep-invert to run tagged tests
+});
+
