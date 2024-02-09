@@ -1,5 +1,5 @@
 import {expect, test} from '@playwright/test';
-
+import helpers from '../helpers/helpers';
 test.skip("Selectors", async({page}) => {
     // text
     await page.click('text=some text');
@@ -32,23 +32,14 @@ test('working with inputs', async({page})=> {
     await expect(errorMessage).toContainText('Login and/or password are wrong');
 })
 
-test('Assertions', async({page})=> {
-    const url = "https://www.example.com";
-    const title = "Example Domain";
-    await page.goto("https://www.example.com");
-    await expect(page).toHaveURL(url);
-    await expect(page).toHaveTitle(title);
+test('Click Button', async({page}) => {
+    await page.goto("http://zero.webappsecurity.com/");
+    await page.click('a.brand');
+    await page.click('#signin_button');
+    await page.click('text=Sign in');
 
-    const element = await page.locator('h1');
-
-    await expect(element).toBeVisible();
-    await expect(element).toHaveText(title);
-    await expect(element).toHaveCount(1);
-
-    const elementNotExist = await page.locator('h5');
-    await expect(elementNotExist).not.toBeVisible();
-
-    await expect(element).toBeVisible();
+    const errorMessage = await page.locator('.alert-error');
+    await expect(errorMessage).toContainText('Login and/or password are wrong');
 });
 
 test.skip('annotations', async({page}) => {
@@ -57,21 +48,35 @@ test.skip('annotations', async({page}) => {
     //describe
 });
 
-test.describe('Learn Palywright suite', () => {
-    test('Navigate to a page', async({page}) => {
+test.describe.only('Learn Palywright suite', () => {
+    // hooks
+    test.beforeEach(async({page}) => {
         await page.goto("https://www.example.com");
+    })
+
+    test('Navigate to a page', async({page}) => {
+        // await page.goto("https://www.example.com");
         const pageTitle = await page.locator('h1');
         await expect(pageTitle).toContainText('Example Domain');
     })
+
+    test('Assertions', async({page})=> {
+        const url = "https://www.example.com";
+        const title = "Example Domain";
+        // await page.goto("https://www.example.com");
+        await expect(page).toHaveURL(url);
+        await expect(page).toHaveTitle(title);
     
-    test('Click Button', async({page}) => {
-        await page.goto("http://zero.webappsecurity.com/");
-        await page.click('a.brand');
-        await page.click('#signin_button');
-        await page.click('text=Sign in');
+        const element = await page.locator('h1');
     
-        const errorMessage = await page.locator('.alert-error');
-        await expect(errorMessage).toContainText('Login and/or password are wrong');
+        await expect(element).toBeVisible();
+        await expect(element).toHaveText(title);
+        await expect(element).toHaveCount(1);
+    
+        const elementNotExist = await page.locator('h5');
+        await expect(elementNotExist).not.toBeVisible();
+    
+        await expect(element).toBeVisible();
     });
 });
 
@@ -81,9 +86,15 @@ test('tagging @my-tag @testTag', async ({page}) => {
     // grep or grep-invert to run tagged tests
 });
 
-test.only('screenshots', async ({page}) => {
+test('screenshots', async ({page}) => {
+    helpers.loadPage(page);
     await page.goto("http://zero.webappsecurity.com/");
-    await page.screenshot({path: 'screenshots/main_page.png'});
+    await page.screenshot({path: 'screenshots/main_page1.png'});
     // grep or grep-invert to run tagged tests
+});
+
+test('screenshots', async ({page}) => {
+    helpers.loadPage(page);
+    helpers.takeScreenshot(page);
 });
 
