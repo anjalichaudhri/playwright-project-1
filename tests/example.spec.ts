@@ -46,9 +46,10 @@ test.skip('annotations', async({page}) => {
     //skip
     //only
     //describe
+    //parallel - to run screenshots in parallel
 });
 
-test.describe.only('Learn Palywright suite', () => {
+test.describe('Learn Palywright suite', () => {
     // hooks
     test.beforeEach(async({page}) => {
         await page.goto("https://www.example.com");
